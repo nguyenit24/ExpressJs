@@ -44,7 +44,7 @@ exports.getAllProducts = (req, res) => {
     res.render('product/index', {
         title: data.title,
         message: data.message,
-        products: products
+        products
     });
 }
 
@@ -74,4 +74,13 @@ exports.getDetailProqduct = (req, res) => {
     res.render('product/detail', { product });
 }
 
+exports.deleteProduct = (req, res) => {
+    try {
+        const { id } = req.params;
+        products = products.filter(product => product.id !== parseInt(id));
+        res.json(200);
+    } catch (error) {
+        res.json(500 + "Error: " + error);
+    }
+}
 

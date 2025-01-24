@@ -43,8 +43,27 @@
                     </h2>
                 </div>
             </div>
+            <button id="deletebutton" style="border-radius: 10px;">Delete</button>
         </div>
 </body>
-
+<script>
+    console.log(`<%= product.id %>`)
+    document.getElementById('deletebutton').addEventListener('click', () => {
+        fetch(
+            'http://localhost:3000/products/details/<%= product.id %>', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }
+        ).then((res) => res.json())
+            .then((json) => {
+                console.log(json)
+                if (json == 200) {
+                    window.location.href = '/products'
+                }
+            })
+    })
+</script>
 
 </html>

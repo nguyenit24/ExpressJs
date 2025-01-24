@@ -68,4 +68,10 @@ exports.postCreateProduct = (req, res) => {
     res.json(products);
 }
 
+exports.getDetailProqduct = (req, res) => {
+    const { id } = req.params;
+    const product = products.find(product => product.id === parseInt(id));
+    res.render('product/detail', { product });
+}
+
 

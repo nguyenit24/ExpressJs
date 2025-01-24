@@ -8,4 +8,5 @@ router.get(`${prefix}/create`, productController.createProduct);
 router.post(`${prefix}/create`, productController.postCreateProduct);
 router.get(`${prefix}/details/:id`, productController.getDetailProqduct);
 router.delete(`${prefix}/details/:id`, productController.deleteProduct);
+router.get(`/api${prefix}/details/:id`, productController.getDetailProqductByid);
 module.exports = router;

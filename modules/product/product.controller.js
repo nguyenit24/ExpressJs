@@ -60,7 +60,7 @@ exports.createProduct = (req, res) => {
 exports.postCreateProduct = (req, res) => {
     const { name, price, image } = req.body;
     products.push({
-        id: products.length + 1,
+        id: products.length ? products[products.length - 1].id + 1 : 1,
         name: name,
         price: price,
         image: image
@@ -73,11 +73,26 @@ exports.getDetailProqduct = (req, res) => {
     const product = products.find(product => product.id === parseInt(id));
     res.render('product/detail', { product });
 }
+exports.getDetailProqductByid = (req, res) => {
+    try {
+
+        const { id } = req.params;
+        const product = products.find(product => product.id === parseInt(id));
+        res.json(product);
+    } catch (error) {
+        res.json(500 + "Error: " + error);
+    }
+}
 
 exports.deleteProduct = (req, res) => {
     try {
         const { id } = req.params;
-        products = products.filter(product => product.id !== parseInt(id));
+        const index = products.findIndex(product => product.id === parseInt(id));
+        products.splice(index, 1);
+        products = products.map((product, index) => {
+            product.id = index + 1;
+            return product;
+        });
         res.json(200);
     } catch (error) {
         res.json(500 + "Error: " + error);

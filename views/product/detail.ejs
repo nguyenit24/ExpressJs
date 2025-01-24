@@ -26,7 +26,6 @@
         </div>
     </div>
     <div class="wrapper-body">
-        <h1 style="text-align: center;">Welcome details</h1>
         <div class="" style="text-align: center;">
             <div class style="background-color: aqua;">
                 <img height="300px" src="<%= product.image %>" />
@@ -43,6 +42,9 @@
                     </h2>
                 </div>
             </div>
+            <button onclick="window.location.href = '/products/create?id=<%= product.id %>'">Update</button>
+            <br>
+            <br>
             <button id="deletebutton" style="border-radius: 10px;">Delete</button>
         </div>
 </body>

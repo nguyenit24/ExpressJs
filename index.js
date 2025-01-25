@@ -9,6 +9,8 @@ app.set('views', './views')
 app.use(express.static('public'))
 const productRouter = require('./modules/product/product.router')
 
+const connectDB = require('./database.js');
+connectDB();
 app.use('/', productRouter);
 app.get('/', (req, res) => {
     res.render('index');
